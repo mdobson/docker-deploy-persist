@@ -1,6 +1,6 @@
 {
   "name": "docker-deploy-persist",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Doing some container persistence mapping to dynamically route API calls",
   "main": "index.js",
   "scripts": {
