@@ -10,9 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "nano": "~4.2.1",
-    "commander": "~2.1.0"
+    "commander": "~2.1.0",
+    "docker.io": "~0.7.1"
   },
   "bin": {
-    "record":"index.js"
+    "record": "index.js"
   }
 }
