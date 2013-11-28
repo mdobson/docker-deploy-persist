@@ -4,13 +4,14 @@ var cmdr = require('commander');
 cmdr
   .version('0.0.0')
   .option('--host [host]', 'Couchdb host')
+  .option('--dockerhost [host]', 'docker daemon host')
   .option('--dockerport [host]', 'Docker host')
   .option('--app [app]', 'Deployed app name')
   .option('-c --container [id]', 'container id')
   .parse(process.argv);
 
 var db = require('nano')(cmdr.host);
-var docker = require('docker.io')({ socketPath:false, host: 'http://0.0.0.0', port: cmdr.dockerport.toString()});
+var docker = require('docker.io')({ socketPath:false, host: cmdr.dockerhost, port: cmdr.dockerport.toString()});
 
 if(!cmdr.container) {
   console.log("Error recording deployment! Routing will be affected.");
