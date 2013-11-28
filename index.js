@@ -23,8 +23,7 @@ if(!cmdr.container) {
       containerId : cmdr.container,
       port : hostPort,
       app : cmdr.app,
-      name : name,
-      hash : cmdr.hash
+      name : name
     };
     db.insert(deploy, deploy.name, function(err, body) {
       if(err) {
