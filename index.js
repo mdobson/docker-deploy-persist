@@ -10,7 +10,7 @@ cmdr
   .parse(process.argv);
 
 var db = require('nano')(cmdr.host);
-var docker = require('docker.io')({ socketPath:false, host: 'http://localhost', port: cmdr.dockerport.toString()});
+var docker = require('docker.io')({ socketPath:false, host: 'http://0.0.0.0', port: cmdr.dockerport.toString()});
 
 if(!cmdr.container) {
   console.log("Error recording deployment! Routing will be affected.");
