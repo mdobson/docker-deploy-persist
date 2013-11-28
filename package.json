@@ -1,0 +1,15 @@
+{
+  "name": "docker-router",
+  "version": "0.0.0",
+  "description": "Doing some container persistence mapping to dynamically route API calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mdobs",
+  "license": "MIT",
+  "dependencies": {
+    "nano": "~4.2.1",
+    "commander": "~2.1.0"
+  }
+}
