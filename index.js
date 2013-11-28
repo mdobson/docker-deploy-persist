@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var db = require('nano')('http://localhost:49159/deploys'),
     cmdr = require('commander');
 
@@ -14,11 +15,11 @@ if (!cmdr.container && !cmdr.port && !cmdr.app && !cmdr.name) {
   console.log("Error recording deployment! Routing will be affected.");
 } else {
   var deploy = {
-    containerId = cmdr.container,
-    port = cmdr.port,
-    app = cmdr.app,
-    name = cmdr.name,
-    hash = cmdr.hash
+    containerId : cmdr.container,
+    port : cmdr.port,
+    app : cmdr.app,
+    name : cmdr.name,
+    hash : cmdr.hash
   };
   db.insert(deploy, deploy.name, function(err, body) {
     if(err) {
