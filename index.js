@@ -16,21 +16,27 @@ if(!cmdr.container) {
   console.log("Error recording deployment! Routing will be affected.");
 } else {
   docker.containers.inspect( cmdr.container, function(err, res) {
-    var name = res.Name;
-    var portConfigs = Object.keys(res.NetworkSettings.Ports);
-    var hostPort = res.NetworkSettings.Ports[portConfigs][0].HostPort;
-    var deploy = {
-      containerId : cmdr.container,
-      port : hostPort,
-      app : cmdr.app,
-      name : name
-    };
-    db.insert(deploy, deploy.name, function(err, body) {
-      if(err) {
-        console.log("Deploy error. Routing may not work!");
-      } else {
-        console.log("Router updated.");
-      }
-    });
+    if(err) {
+      console.log("LOOKUP ERROR");
+      console.log(err);
+    } else {
+
+      var name = res.Name;
+      var portConfigs = Object.keys(res.NetworkSettings.Ports);
+      var hostPort = res.NetworkSettings.Ports[portConfigs][0].HostPort;
+      var deploy = {
+        containerId : cmdr.container,
+        port : hostPort,
+        app : cmdr.app,
+        name : name
+      };
+      db.insert(deploy, deploy.name, function(err, body) {
+        if(err) {
+          console.log("Deploy error. Routing may not work!");
+        } else {
+          console.log("Router updated.");
+        }
+      });
+    }
   });
 }
