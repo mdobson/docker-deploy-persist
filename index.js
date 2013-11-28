@@ -1,15 +1,17 @@
 #!/usr/bin/env node
-var db = require('nano')('http://localhost:49159/deploys'),
-    cmdr = require('commander');
+var cmdr = require('commander');
 
 cmdr
   .version('0.0.0')
+  .option('--host [host]', 'Couchdb host')
   .option('-c --container [id]', 'container id')
   .option('-p --port [port]', 'Open port on host machine')
   .option('-a --app [app]', 'App name')
   .option('-n --name [name]', 'Container name')
   .option('-h --hash [hash]', 'git md5 hash')
   .parse(process.argv);
+
+var db = require('nano')(cmdr.host);
 
 if (!cmdr.container && !cmdr.port && !cmdr.app && !cmdr.name) {
   console.log("Error recording deployment! Routing will be affected.");
